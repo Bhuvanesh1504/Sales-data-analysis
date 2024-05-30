@@ -1,18 +1,50 @@
-# Sales-data-analysis
-This repository contains a data analysis project focusing on sales data. The project explores sales trends, patterns, and insights to help businesses make informed decisions.
+data = pd.read_csv("/kaggle/input/online-sales-data/Online Sales Data.csv")
+df = pd.DataFrame(data)
+print(df.head(10))
 
-Overview
+df = df.drop_duplicates()
+print(df.isnull().sum())
+df['Date']= pd.to_datetime(df['Date'])
+print(df.dtypes)
 
-In this analysis, we delve into the sales data to uncover valuable insights that can drive strategic decisions. We examine various aspects of the sales data, including:
 
-Sales Performance: Analyzing overall sales performance over time to identify trends and patterns.
-Product Analysis: Investigating sales performance by product category, identifying top-selling products, and exploring product performance metrics.
-Customer Segmentation: Segmenting customers based on purchasing behavior and demographics to tailor marketing strategies and improve customer engagement.
-Market Trends: Examining market trends, seasonality, and external factors impacting sales to forecast future performance and adapt business strategies accordingly.
+print(df.describe())
+print("\n")
+print(df.columns)
+print("\n")
+print(df['Product Category'].value_counts(ascending=False))
+print("\n")
+print(df['Product Name'].value_counts(ascending=False))
+print("\n")
+print(df.nunique())
 
-Tools and Technologies Used
 
-Python: Utilized for data preprocessing, analysis, and visualization.
-Pandas: Used for data manipulation and analysis.
-Matplotlib and Seaborn: Employed for data visualization and generating insights.
-Jupyter Notebook: Leveraged for interactive data analysis and documentation.
+import matplotlib.pyplot as plt
+import seaborn as sns
+plt.figure(figsize=(12,6))
+sns.lineplot(data = df, x='Date', y='Units Sold')
+plt.title('Sales OVER Date')
+plt.xlabel('Date')
+plt.ylabel('Units Sold')
+plt.show()
+
+plt.figure(figsize=(12,6))
+sns.barplot(data=df, x='Product Category', y='Units Sold')
+plt.title('Sales OVER Category')
+plt.xlabel('Category')
+plt.ylabel('Units Sold')
+plt.show()
+
+plt.figure(figsize=(12,6))
+sns.histplot(df['Units Sold'], bins=10, kde=True)
+plt.title('Sales Distribution')
+plt.xlabel('sales')
+plt.ylabel('Frequency')
+plt.show()
+
+plt.figure(figsize=(12,6))
+sns.countplot(data=df, y='Region',order = df['Region'].value_counts().index)
+plt.title('Count of products by Regions')
+plt.xlabel('Count')
+plt.ylabel('Regions')
+plt.show()
