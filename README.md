@@ -1,6 +1,7 @@
 This repository contains a data analysis project focusing on sales data. The project explores sales trends, patterns, and insights to help businesses make informed decisions.
 
 Overview
+
 In this analysis, we delve into the sales data to uncover valuable insights that can drive strategic decisions. We examine various aspects of the sales data, including:
 
 Sales Performance: Analyzing overall sales performance over time to identify trends and patterns.
